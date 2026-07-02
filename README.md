@@ -46,6 +46,14 @@ Download the appropriate package from the [Releases](https://github.com/Amirmoha
 
 > **Note:** Dependencies (`readline` and `nlohmann-json`) are automatically resolved on Debian/Ubuntu and Fedora/RHEL.
 
+#### Option 2-1: You can build packages
+```bash
+mkdir build && cd build
+cmake ..
+make
+make package
+```
+
 ### Option 3: Manual Build from Source
 
 ```bash
