@@ -49,7 +49,7 @@ Download the appropriate package from the [Releases](https://github.com/Amirmoha
 #### Option 2-1: You can build packages
 ```bash
 mkdir build && cd build
-cmake ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 make
 make package
 ```
@@ -60,7 +60,7 @@ make package
 git clone https://github.com/Amirmohammadkazemi/clical.git
 cd clical
 mkdir build && cd build
-cmake ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 make
 sudo make install
 ```
@@ -179,7 +179,7 @@ For developers who want to build from source:
 git clone https://github.com/Amirmohammadkazemi/clical.git
 cd clical
 mkdir build && cd build
-cmake ..
+cmake -DCMAKE_INSTALL_PREFIX=/usr ..
 make
 ```
 
@@ -188,7 +188,7 @@ make
 After building, you can create installation packages:
 
 ```bash
-cpack
+cpack -G RPM
 ```
 
 This generates `clical-*.deb`, `clical-*.rpm`, and `clical-*.tar.gz` in the `build` directory.

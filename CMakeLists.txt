@@ -56,4 +56,27 @@ add_custom_target(make_package
     COMMENT "Building packages (RPM, DEB, TGZ)"
 )
 
+# ========== Tests ==========
+find_package(GTest REQUIRED)
+include_directories(${GTEST_INCLUDE_DIRS})
+
+add_executable(clical_tests
+    tests/test_main.cpp
+    tests/test_utils.cpp
+    tests/test_event.cpp
+    tests/test_recurring_event.cpp
+    tests/test_calendar.cpp
+    tests/test_storage.cpp
+    tests/test_command_parser.cpp
+)
+
+target_link_libraries(clical_tests
+    calendar_lib
+    ${GTEST_LIBRARIES}
+    ${READLINE_LIBRARIES}
+    ${NLOHMANN_JSON_LIBRARIES}
+    pthread
+)
+
+
 include(CPack)

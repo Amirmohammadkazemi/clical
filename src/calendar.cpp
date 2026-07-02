@@ -6,8 +6,21 @@
 #include <chrono>
 #include <sstream>
 #include <set>
+#include <unistd.h>
+#include <sys/stat.h>
 
-Calendar::Calendar() : storageFile("calendar_data.json") {
+static std::string getDefaultStoragePath() {
+    const char* home = getenv("HOME");
+    if (!home) {
+        return "calendar_data.json";
+    }
+    std::string configDir = std::string(home) + "/.config/clical/";
+    mkdir(configDir.c_str(), 0755);
+    return configDir + "calendar_data.json";
+}
+
+
+Calendar::Calendar() : storageFile(getDefaultStoragePath()) {
     std::string err;
     if (!loadFromFile(err) && !err.empty()) {
         Utils::printWarning("Could not load storage: " + err);
