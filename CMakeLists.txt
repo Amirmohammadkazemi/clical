@@ -20,16 +20,13 @@ add_library(calendar_lib STATIC
     src/utils.cpp
 )
 
-# Main file
 add_executable(clical src/main.cpp)
 target_link_libraries(clical calendar_lib ${READLINE_LIBRARIES} ${NLOHMANN_JSON_LIBRARIES})
 
-# Install for system
-install(TARGETS clical DESTINATION bin)
-install(FILES calendar_data.json DESTINATION share/clcalendar/ OPTIONAL)
+# نصب فایل اجرایی
+install(TARGETS clical RUNTIME DESTINATION bin)
 
-include(CPack)
-
+# ========== CPack ==========
 set(CPACK_PACKAGE_NAME "clical")
 set(CPACK_PACKAGE_VERSION "1.0.0")
 set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "Command-Line Calendar with Advanced Features")
@@ -37,16 +34,22 @@ set(CPACK_PACKAGE_VENDOR "Shahin")
 set(CPACK_PACKAGE_CONTACT "amirmohammadkazemi2002@gmail.com")
 set(CPACK_PACKAGE_HOMEPAGE "https://github.com/amirohammadkazemi/Command-Line-Calendar")
 
-# Debian/Ubuntu
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "libreadline8, nlohmann-json3-dev")
+# معماری
+set(CPACK_RPM_PACKAGE_ARCHITECTURE "x86_64")
+set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
+
+# وابستگی‌های Runtime (نه توسعه)
+set(CPACK_RPM_PACKAGE_REQUIRES "readline, nlohmann-json-devel")
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "readline, nlohmann-json-devel")
+
 set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "amirmohammad <amirmohammadkazemi2002@gmail.com>")
+set(CPACK_RPM_PACKAGE_RELEASE 1)
 
-# Fedora/RHEL
-set(CPACK_RPM_PACKAGE_REQUIRES "readline, nlohmann-json-devel")
-set(CPACK_RPM_PACKAGE_SUMMARY "Command-Line Calendar")
-set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+# مسیر نصب در سیستم
+set(CMAKE_INSTALL_PREFIX "/usr")
 
-set(CPACK_GENERATOR "DEB;RPM;TGZ")
+# فقط بسته‌های باینری
+set(CPACK_GENERATOR "RPM;DEB;TGZ")
 
 include(CPack)
