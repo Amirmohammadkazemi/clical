@@ -1,10 +1,10 @@
-# clical – Command-Line Calendar
+# clical – Command-Line Calendar (Scheduler)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![C++17](https://img.shields.io/badge/C%2B%2B-17-blue.svg)](https://isocpp.org/)
 [![Linux](https://img.shields.io/badge/Linux-FCC624?logo=linux&logoColor=black)](https://www.linux.org/)
 
-**clical** (CLI Calendar) is a powerful, feature-rich command-line calendar application written in modern C++17. It provides full CRUD operations, recurring events, persistent storage, and a terminal-like interactive interface with readline support.
+**clical** (CLI Calendar) is a powerful, feature-rich command-line calendar and Scheduler application written in modern C++17. It provides full CRUD operations, recurring events, persistent storage, and a terminal-like interactive interface with readline support.
 
 ---
 
@@ -130,7 +130,11 @@ Goodbye!
 
 ## Storage
 
-All events are saved to `~/.clical/calendar_data.json` (or `./calendar_data.json` if the directory doesn't exist). The file is human-readable and can be manually edited:
+All events are saved to `.config/clical/calendar_data.json`
+
+If you did not install it on the system and just compiled it `./build/calendar_data.json`
+
+The file is human-readable and can be manually edited:
 
 ```json
 [
