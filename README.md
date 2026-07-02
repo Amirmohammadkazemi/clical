@@ -79,9 +79,12 @@ You'll see a prompt (`> `) where you can type commands. Use arrow keys to naviga
 
 ### Available Commands
 
+> **Both uppercase and lowercase letters can be used for commands (not flags).**
+
 | Command | Description |
 |---------|-------------|
-| `ADD --title "Title" --start-date YYYY-MM-DD --start-time HH:MM --end-date YYYY-MM-DD --end-time HH:MM [--recurrence daily/weekly/monthly --interval N --recurrence-end YYYY-MM-DD]` | Add a new event (normal or recurring) |
+| `ADD --title "Title" --start-date YYYY-MM-DD --start-time HH:MM --end-date YYYY-MM-DD --end-time HH:MM` | Add a new event (normal or recurring) |
+| `--recurrence daily/weekly/monthly --interval N --recurrence-end YYYY-MM-DD` | Option for ADD command|
 | `LIST` | List all events sorted by start time |
 | `LIST --date YYYY-MM-DD` | List events on a specific date |
 | `LIST --range "YYYY-MM-DD YYYY-MM-DD"` | List events within a date range |
