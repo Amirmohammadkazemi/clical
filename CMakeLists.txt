@@ -23,7 +23,6 @@ add_library(calendar_lib STATIC
 add_executable(clical src/main.cpp)
 target_link_libraries(clical calendar_lib ${READLINE_LIBRARIES} ${NLOHMANN_JSON_LIBRARIES})
 
-# نصب فایل اجرایی
 install(TARGETS clical RUNTIME DESTINATION bin)
 
 # ========== CPack ==========
@@ -34,22 +33,27 @@ set(CPACK_PACKAGE_VENDOR "Shahin")
 set(CPACK_PACKAGE_CONTACT "amirmohammadkazemi2002@gmail.com")
 set(CPACK_PACKAGE_HOMEPAGE "https://github.com/amirohammadkazemi/Command-Line-Calendar")
 
-# معماری
 set(CPACK_RPM_PACKAGE_ARCHITECTURE "x86_64")
 set(CPACK_DEBIAN_PACKAGE_ARCHITECTURE "amd64")
 
-# وابستگی‌های Runtime (نه توسعه)
+# Fedora/RHEL
 set(CPACK_RPM_PACKAGE_REQUIRES "readline, nlohmann-json-devel")
-set(CPACK_DEBIAN_PACKAGE_DEPENDS "readline, nlohmann-json-devel")
+
+# Debian/Ubuntu
+set(CPACK_DEBIAN_PACKAGE_DEPENDS "libreadline8, nlohmann-json3")
 
 set(CPACK_DEBIAN_PACKAGE_SECTION "utils")
 set(CPACK_DEBIAN_PACKAGE_MAINTAINER "amirmohammad <amirmohammadkazemi2002@gmail.com>")
 set(CPACK_RPM_PACKAGE_RELEASE 1)
 
-# مسیر نصب در سیستم
 set(CMAKE_INSTALL_PREFIX "/usr")
 
-# فقط بسته‌های باینری
 set(CPACK_GENERATOR "RPM;DEB;TGZ")
+
+add_custom_target(make_package
+    COMMAND ${CMAKE_CPACK_COMMAND} -G RPM -G DEB -G TGZ
+    DEPENDS clical
+    COMMENT "Building packages (RPM, DEB, TGZ)"
+)
 
 include(CPack)
